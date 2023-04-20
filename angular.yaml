@@ -3,7 +3,7 @@
   become: yes
 
   vars:
-      repo_path: sanjeevkumarsr/devopsproject:'${IMAGE_TAG}'
+      repo_path: sanjeevkumarsr/angular:'${IMAGE_TAG}'
       dest_path: /home/ubuntu/'${IMAGE_TAG}'
 
 
@@ -27,13 +27,7 @@
     pip:
         name: docker-py
         state: present
-      
-  - name: pull an image
-    docker_image: 
-        name: sanjeevkumarsr/angular
-        tag: "${env.BUILD_NUMBER}"
-        source: pull
-        
+    
   - name: Create a directory if it does not exist
     file:
           path: "{{ dest_path }}"
