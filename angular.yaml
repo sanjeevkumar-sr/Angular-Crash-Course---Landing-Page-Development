@@ -1,7 +1,7 @@
 - hosts: production
   remote_user: ubuntu
   become: root
-  become: -b
+  become: true
   vars:
       repo_path: sanjeevkumarsr/devopsproject:'${IMAGE_TAG}'
       dest_path: /home/ubuntu/'${IMAGE_TAG}'
