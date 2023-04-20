@@ -31,8 +31,8 @@
   - name: pull an image
     docker_image: 
         name: sanjeevkumarsr/angular
-        tag: '${IMAGE_TAG}'
-        source: pull
+        tag: '{{IMAGE_TAG}}'
+        source:pull
 
   - name: Create a directory if it does not exist
     file:
