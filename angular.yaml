@@ -1,17 +1,18 @@
-- hosts: production
+- hosts: all
   remote_user: ubuntu
-  become: root
-  become: true
+  become: yes
+
   vars:
       repo_path: sanjeevkumarsr/devopsproject:'${IMAGE_TAG}'
       dest_path: /home/ubuntu/'${IMAGE_TAG}'
 
 
   tasks:
-  - name: Install Python pip
+  - name: Install python pip
     apt:
         name: python3-pip
         state: present
+
 
   - name: Install Docker
     apt:
