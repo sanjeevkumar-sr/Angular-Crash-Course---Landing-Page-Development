@@ -67,4 +67,8 @@
     command: pm2 start npm -- start /src/index.html --name '{IMAGE_TAG}-service'
     args:
         chdir: "{{ dest_path }}"
+        
+
+        
+       
 
