@@ -27,6 +27,11 @@
     pip:
         name: docker-py
         state: present
+        
+  - name: name: pull an image
+    docker_image: 
+        name: sanjeevkumarsr/angular:$IMAGE_TAG
+        source: pull
     
   - name: Create a directory if it does not exist
     file:
