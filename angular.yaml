@@ -35,7 +35,7 @@
           
   - name: Copy website to hosts
     copy:
-        src: ./
+        src: .
         dest: "{{ dest_path }}"
 
   - name: Add the Node.js repository
