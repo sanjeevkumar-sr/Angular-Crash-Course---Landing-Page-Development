@@ -30,7 +30,7 @@
         
   - name: Create a directory if it does not exist
     file:
-          path: "{{ dest_path }}"
+          dest: "{{ dest_path }}"
           state: directory
           
   - name: Copy website to hosts
