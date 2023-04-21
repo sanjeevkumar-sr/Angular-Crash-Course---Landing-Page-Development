@@ -28,20 +28,10 @@
         name: docker-py
         state: present
         
-  - name: pull an image
-    docker_image: 
-        name: sanjeevkumarsr/angular:"${IMAGE_TAG}"
-        source: pull
-    
   - name: Create a directory if it does not exist
     file:
           path: "{{ dest_path }}"
           state: directory
-
-  - name: Copy website to hosts
-    copy:
-        src: ./
-        dest: "{{ dest_path }}"
 
   - name: Add the Node.js repository
     shell: 'curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash '
