@@ -59,7 +59,7 @@
     command: pm2 status
 
   - name: Start service
-    command: pm2 start /src/app/app.component.html --name "{{ ${IMAGE_TAG} }}-Service"
+    command: pm2 start /src/app/app.component.html --name "{{ {IMAGE_TAG} }}-Service"
     args:
         chdir: "{{ dest_path }}"
 
