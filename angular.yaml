@@ -7,7 +7,7 @@
       dest_path: /home/ubuntu/'${IMAGE_TAG}'
 
 
-  tasks:
+    tasks:
   - name: Install python pip
     apt:
         name: python3-pip
@@ -36,7 +36,7 @@
   - name: Copy website to hosts
     copy:
         src: ./
-        dest: "{{ dest_path }}
+        dest: "{{ dest_path }}"
 
   - name: Add the Node.js repository
     shell: 'curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash '
