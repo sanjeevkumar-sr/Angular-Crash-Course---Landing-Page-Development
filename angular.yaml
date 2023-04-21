@@ -40,6 +40,9 @@
     apt:
         name: nodejs
         state: present
+        
+  - name: Install project dependencies
+      command: npm install
     
   - name: Install Angular
     npm:
@@ -47,9 +50,6 @@
         global: yes
         state: present
         
-  - name: Install project dependencies
-      command: npm install
-
   - name: Install Process manager tool
     npm:
         name: pm2
