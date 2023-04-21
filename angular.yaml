@@ -36,10 +36,12 @@
   - name: Add the Node.js repository
     shell: 'curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash '
 
-  - name: Install Node.js
+  - name: Install Node.js and npm
     apt:
-        name: nodejs
-        state: present
+        name:
+          - nodejs
+          - npm
+        state: latest
         
   - name: Install Angular
     npm:
