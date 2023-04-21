@@ -46,6 +46,9 @@
         name: '@angular/cli'
         global: yes
         state: present
+        
+  - name: Install project dependencies
+      command: npm install
 
   - name: Install Process manager tool
     npm:
