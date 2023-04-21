@@ -51,7 +51,7 @@
         
   - name: Install Process manager tool
     npm:
-        name: pm2 -g
+        name: pm2-g
         global: yes
         state: present
 
