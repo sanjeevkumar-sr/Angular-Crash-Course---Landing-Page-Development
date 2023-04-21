@@ -41,9 +41,6 @@
         name: nodejs
         state: present
         
-  - name: Install project dependencies
-    command: npm install
-    
   - name: Install Angular
     npm:
         name: '@angular/cli'
