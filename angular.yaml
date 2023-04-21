@@ -42,7 +42,7 @@
         state: present
         
   - name: Install project dependencies
-      command: npm install
+    command: npm install
     
   - name: Install Angular
     npm:
