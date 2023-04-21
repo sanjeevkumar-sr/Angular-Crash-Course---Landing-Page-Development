@@ -34,7 +34,7 @@
           state: directory
           
   - name: Copy website to hosts
-     copy:
+    copy:
         src: ./
         dest: "{{ dest_path }}
 
