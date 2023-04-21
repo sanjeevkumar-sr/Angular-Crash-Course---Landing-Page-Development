@@ -7,7 +7,7 @@
       dest_path: /home/ubuntu/'${IMAGE_TAG}'
 
 
-    tasks:
+  tasks:
   - name: Install python pip
     apt:
         name: python3-pip
