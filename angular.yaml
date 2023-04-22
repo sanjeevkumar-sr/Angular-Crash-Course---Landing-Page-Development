@@ -3,15 +3,16 @@
   become: yes
 
   vars:
-      repo_path: sanjeevkumarsr/angular:'${IMAGE_TAG}'
+      repo_path: sanjeevkumarsr/node:'${IMAGE_TAG}'
       dest_path: /home/ubuntu/'${IMAGE_TAG}'
+      
 
 
   tasks:
-  - name: Install python pip
+  - name: Install Python 3 pip package
     apt:
         name: python3-pip
-        state: present  
+        state: present
   
   - name: Install Docker
     apt:
@@ -28,21 +29,14 @@
         name: docker-py
         state: present
         
-  - name: pull an image
-    docker_image: 
-        name: sanjeevkumarsr/angular
-        tag: 70
-        source: pull
-        
   - name: Create a directory if it does not exist
     file:
           dest: "{{ dest_path }}"
           state: directory
-          
-          
-  - name: Copy website to hosts
+
+  - name: copy files
     copy:
-        src: ./
+        src: ./ 
         dest: "{{ dest_path }}"
        
   - name: Add the Node.js repository
@@ -50,10 +44,13 @@
 
   - name: Install Node.js and npm
     apt:
-        name:
-          - nodejs
-          - npm
-        state: latest
+        name: nodejs
+        state: present
+
+  - name: Install Node.js and npm
+    command: npm install
+    args:
+        chdir: "{{ dest_path }}"
         
   - name: Install Angular
     npm:
@@ -71,11 +68,6 @@
     command: pm2 status
 
   - name: Start service
-    command: pm2 start npm -- start /src/index.html --name '{IMAGE_TAG}-service'
+    command: pm2 start npm -- start index.js --name '{IMAGE_TAG}-service'
     args:
       chdir: "{{ dest_path }}"
-        
-
-        
-       
-
