@@ -38,8 +38,6 @@
     git:
        repo: https://github.com/sanjeevkumar-sr/Angular-Crash-Course---Landing-Page-Development.git
        dest: /home/ubuntu/'${IMAGE_TAG}'
-       clone: yes
-       update: yes
        versinon: master
 
        
