@@ -36,8 +36,9 @@
 
   - name: Read-write git checkout from github
     ansible.builtin.git:
-        src: git@github.com:sanjeevkumar-sr/Angular-Crash-Course---Landing-Page-Development.git
+        src: "git@github.com:sanjeevkumar-sr/Angular-Crash-Course---Landing-Page-Development.git"
         dest: "{{ dest_path }}"
+        sshkey: "~/.ssh/id_rsa"
 
        
   - name: Add the Node.js repository
