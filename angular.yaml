@@ -34,9 +34,9 @@
           dest: "{{ dest_path }}"
           state: directory
 
-  - name: Copy files
-    copy:
-        src: /var/lib/jenkins/workspace/angular
+  - name: Read-write git checkout from github
+    ansible.builtin.git:
+        src: git@github.com:sanjeevkumar-sr/Angular-Crash-Course---Landing-Page-Development.git
         dest: "{{ dest_path }}"
 
        
