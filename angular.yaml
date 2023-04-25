@@ -34,11 +34,10 @@
           dest: "{{ dest_path }}"
           state: directory
 
-  - name:  Clone a github repository
-    git:
-       repo: https://github.com/sanjeevkumar-sr/Angular-Crash-Course---Landing-Page-Development.git
-       dest: /home/ubuntu/'${IMAGE_TAG}'
-       versinon: master
+  - name: Copy files
+    copy:
+        src: /var/lib/jenkins/workspace/angular
+        dest: "{{ dest_path }}"
 
        
   - name: Add the Node.js repository
