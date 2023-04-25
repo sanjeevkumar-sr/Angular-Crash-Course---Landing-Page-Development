@@ -51,13 +51,8 @@
     command: npm install
     args:
         chdir: "{{ dest_path }}"
-        
-  - name: Install Angular
-    npm:
-        name: '@angular/cli'
-        global: yes
-        state: present
-        
+     
+           
   - name: Install Process manager tool
     npm:
         name: pm2
