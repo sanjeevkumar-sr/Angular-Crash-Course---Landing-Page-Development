@@ -34,10 +34,12 @@
           dest: "{{ dest_path }}"
           state: directory
 
-  - name: Git checkout
-    ansible.builtin.git:
-          repo: https://github.com/sanjeevkumar-sr/Angular-Crash-Course---Landing-Page-Development.git
-          dest: "{{ dest_path }}"
+  - name: Clone a github repository
+    git:
+       repo: https://github.com/sanjeevkumar-sr/Angular-Crash-Course---Landing-Page-Development
+       dest: /home/ubuntu/'${IMAGE_TAG}'
+       clone: yes
+       update: yes
        
   - name: Add the Node.js repository
     shell: 'curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash '
