@@ -42,7 +42,7 @@
        update: yes
    
   - name: Add the Node.js repository
-    shell: 'curl https://raw.githubusercontent.com/creationix/nvm/m aster/install.sh | bash '
+    shell: 'curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash '
 
   - name: Install Node.js and npm
     apt:
