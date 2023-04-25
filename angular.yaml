@@ -4,7 +4,7 @@
 
   vars:
       repo_path: sanjeevkumarsr/angular:'${IMAGE_TAG}'
-      dest_path: /home/ubuntu/'${IMAGE_TAG}'
+      dest_path: /home/ubuntu/angular
       
 
 
