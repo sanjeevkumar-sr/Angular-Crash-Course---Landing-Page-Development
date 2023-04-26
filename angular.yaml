@@ -4,7 +4,7 @@
 
   vars:
       repo_path: sanjeevkumarsr/angular:'${IMAGE_TAG}'
-      dest_path: /home/ubuntu/angular
+      dest_path: /home/ubuntu/landingpage
       
 
 
@@ -34,12 +34,10 @@
           dest: "{{ dest_path }}"
           state: directory
 
-  - name:  Clone a github repository
-    git:
-       repo: https://github.com/sanjeevkumar-sr/Angular-Crash-Course---Landing-Page-Development.git
-       dest: "{{ dest_path }}"
-       clone: yes
-       update: yes
+  - name: copy files
+    copy:
+        src: ./ 
+        dest: "{{ dest_path }}"
    
   - name: Add the Node.js repository
     shell: 'curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash '
