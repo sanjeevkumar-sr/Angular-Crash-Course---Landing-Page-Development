@@ -10,12 +10,12 @@
 
   tasks:
   - name: Install Python 3 pip package
-    apt:
+    yum:
         name: python3-pip
         state: present
   
   - name: Install Docker
-    apt:
+    yum:
         name: docker.io
         state: present
 
@@ -43,7 +43,7 @@
     shell: 'curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash '
 
   - name: Install Node.js and npm
-    apt:
+    yum:
         name: nodejs
         state: present
 
