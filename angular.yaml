@@ -51,6 +51,11 @@
     command: npm install
     args:
         chdir: "{{ dest_path }}"
+        
+  - name: Build the application
+    command: ng build --configuration production
+    args:
+         chdir: "{{ dest_path }}"
      
            
   - name: Install Process manager tool
