@@ -3,7 +3,7 @@
   become: yes
 
   vars:
-      repo_path: sanjeevkumarsr/angular:'${IMAGE_TAG}'
+      repo_path: sanjeevkumarsr/crash:'${IMAGE_TAG}'
       dest_path: /home/ec2-user/landingpage
       
 
