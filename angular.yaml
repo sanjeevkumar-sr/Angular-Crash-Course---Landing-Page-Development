@@ -7,7 +7,7 @@
   
   vars:
     repo_path: /var/lib/jenkins/workspace/angularcrash
-    dest_path: /home/ec2-user/crash
+    dest_path: /home/ec2-user/crashcourse
     
     
   tasks:
