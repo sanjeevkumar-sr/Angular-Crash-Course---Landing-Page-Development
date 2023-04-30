@@ -3,66 +3,85 @@
 - hosts: all
   become_user: root
   become: true
+  
+  
   vars:
     repo_path: /var/lib/jenkins/workspace/angularcrash
     dest_path: /home/ec2-user/crash
+    
+    
   tasks:
-    - name: Install python pip
+    - name: Install Python 3 pip package
       yum:
         name: python-pip
         state: present
+        
+        
     - name: Install docker
       yum:
         name: docker
         state: present
+        
     - name: start docker
       service:
         name: docker
         state: started
         enabled: yes
-    - name: Install docker-py python module
+        
+        
+    - name: Docker python package
       pip:
         name: docker-py
         state: present
+        
+        
     - name: create directory
       file:
         state: directory
         dest: "{{dest_path}}"
-    - name: copy website to the host
+        
+        
+    - name: copy files
       copy:
         src: ./
         dest: "{{dest_path}}"
-    # Install NodeJS library
-    # using multiple shell commands
-    - name: Install Nodejs & AngularJS
+    
+    - name: Add the Node.js repository
       shell: 'curl --silent --location https://rpm.nodesource.com/setup_16.x | bash -'
-    # If other package are required mention the package name in "name"
-    # eg: ngix, curl, wget, apache2, nodejs
-    - name: Install required packages
+      
+    - name: Install Node.js and npm
       yum:
         name: nodejs
         state: present
-    - name: Install project dependencies
+        
+    - name: Install npm
       command: npm install
       args:
         chdir: "{{ dest_path }}"
-    - name: Install Angular CLI
-      command: sudo npm install -g @angular/cli
+        
+    - name: Install Angular
+      npm:
+        name: '@angular/cli'
+        global: yes
+        state: present
+      
+      
     - name: Install Node packages
       npm:
         path: "{{ dest_path }}"
+      
     - name: Build the application
       command: ng build --configuration production
       args:
         chdir: "{{ dest_path }}"
-    - name: Install PM2
-      npm: name=pm2 global=yes state=present
-    - name: Get Forever's list of running processes
-      command: pm2 status
-      register: pm2_status
-      changed_when: false
-    - name: Kill pm2 service
-      command: pm2 kill
+        
+        
+    - name: Install Install Process manager tool
+      npm:
+        name: pm2
+        global: yes
+        state: present
+      
     - name: Start service
       command: pm2 start npm -- start ./src/index.html --name "{DOCKER_TAG}-Service"
       args:
