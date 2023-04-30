@@ -4,7 +4,7 @@
   become_user: root
   become: true
   vars:
-    repo_path: sanjeevkumarsr/crash:$DOCKER_TAG
+    repo_path: sanjeevkumarsr/crash:${DOCKER_TAG}
     dest_path: /home/ec2-user/crash
   tasks:
     - name: Install python pip
