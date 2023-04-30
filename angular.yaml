@@ -4,7 +4,7 @@
   become_user: root
   become: true
   vars:
-    repo_path: sanjeevkumarsr/crash:${DOCKER_TAG}
+    repo_path: /var/lib/jenkins/workspace/angularcrash
     dest_path: /home/ec2-user/crash
   tasks:
     - name: Install python pip
