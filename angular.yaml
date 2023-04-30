@@ -1,73 +1,69 @@
-- hosts: all
-  remote_user: ec2-user
-  become: yes
-
+---
+- name: Staging server Deployment
+  hosts: stageserver
+  become_user: root
+  become: true
   vars:
-      repo_path: sanjeevkumarsr/crash:'${IMAGE_TAG}'
-      dest_path: /home/ec2-user/landingpage
-      
-
-
+    repo_path: sanjeevkumarsr/crash:{{DOCKER_TAG}}
+    dest_path: /home/ec2-user/crash
   tasks:
-  - name: Install Python 3 pip package
-    yum:
-        name: python3-pip
+    - name: Install python pip
+      yum:
+        name: python-pip
         state: present
-  
-  - name: Install Docker
-    yum:
+    - name: Install docker
+      yum:
         name: docker
         state: present
-
-  - name: Start Docker service
-    service:
+    - name: start docker
+      service:
         name: docker
         state: started
-
-  - name: Docker python package
-    pip:
+        enabled: yes
+    - name: Install docker-py python module
+      pip:
         name: docker-py
         state: present
-        
-  - name: Create a directory if it does not exist
-    file:
-          dest: "{{ dest_path }}"
-          state: directory
-
-  - name: copy files
-    copy:
-        src: ./ 
-        dest: "{{ dest_path }}"
-   
-  - name: Add the Node.js repository
-    shell: 'curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash '
-
-  - name: Install Node.js and npm
-    yum:
+    - name: create directory
+      file:
+        state: directory
+        dest: "{{dest_path}}"
+    - name: copy website to the host
+      copy:
+        src: ./
+        dest: "{{dest_path}}"
+    # Install NodeJS library
+    # using multiple shell commands
+    - name: Install Nodejs & AngularJS
+      shell: 'curl --silent --location https://rpm.nodesource.com/setup_16.x | bash -'
+    # If other package are required mention the package name in "name"
+    # eg: ngix, curl, wget, apache2, nodejs
+    - name: Install required packages
+      yum:
         name: nodejs
         state: present
-
-  - name: Install Node.js and npm
-    command: npm install
-    args:
+    - name: Install project dependencies
+      command: npm install
+      args:
         chdir: "{{ dest_path }}"
-        
-  - name: Build the application
-    command: ng build --configuration production
-    args:
-         chdir: "{{ dest_path }}"
-     
-           
-  - name: Install Process manager tool
-    npm:
-        name: pm2
-        global: yes
-        state: present
-
-  - name: pm2 command
-    command: pm2 status
-
-  - name: Start service
-    command: pm2 start npm -- /src/index.html --name '{IMAGE_TAG}-service'
-    args:
-      chdir: "{{ dest_path }}"
+    - name: Install Angular CLI
+      command: sudo npm install -g @angular/cli
+    - name: Install Node packages
+      npm:
+        path: "{{ dest_path }}"
+    - name: Build the application
+      command: ng build --configuration production
+      args:
+        chdir: "{{ dest_path }}"
+    - name: Install PM2
+      npm: name=pm2 global=yes state=present
+    - name: Get Forever's list of running processes
+      command: pm2 status
+      register: pm2_status
+      changed_when: false
+    - name: Kill pm2 service
+      command: pm2 kill
+    - name: Start service
+      command: pm2 start npm -- start ./src/index.html --name "{{DOCKER_TAG}}-Service"
+      args:
+        chdir: "{{ dest_path }}"
