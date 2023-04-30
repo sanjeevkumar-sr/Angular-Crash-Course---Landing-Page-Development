@@ -1,6 +1,6 @@
 ---
-- name: Staging server Deployment
-  hosts: stageserver
+
+- hosts: all
   become_user: root
   become: true
   vars:
