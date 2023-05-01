@@ -51,9 +51,7 @@
       
     - name: Install Node.js and npm
       yum:
-        From: 16.20.0
         name: nodejs
-        
         state: present
         
     - name: Install npm
