@@ -6,7 +6,7 @@
   
   
   vars:
-    repo_path: /var/lib/jenkins/workspace/angularcrash
+    repo_path: sanjeevkumarsr/crash:${DOCKER_TAG}
     dest_path: /home/ec2-user/crashcourse
     
     
