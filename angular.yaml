@@ -3,7 +3,6 @@
 - hosts: all
   become_user: root
   become: true
-  env no_proxy= '*' angular.yaml
   
   vars:
     repo_path: sanjeevkumarsr/crash:${DOCKER_TAG}
