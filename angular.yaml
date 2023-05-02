@@ -6,7 +6,7 @@
   
   vars:
     repo_path: sanjeevkumarsr/crash:${DOCKER_TAG}
-    dest_path: /home/ec2-user/crashcourse
+    dest_path: /home/ec2-user/crashabc
     
     
   tasks:
