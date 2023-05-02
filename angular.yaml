@@ -69,11 +69,10 @@
       npm:
         path: "{{ dest_path }}"
       
-    - name: Build the application
-      command: ng build 
+    - name: Install project dependencies
+      command: npm install
       args:
         chdir: "{{ dest_path }}"
-        
         
     - name: Install Install Process manager tool
       npm:
