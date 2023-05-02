@@ -84,7 +84,7 @@
         
     - name: pm2 status command
       command: pm2 status
-      register: pm2 status
+      register: pm2_status
       
     - name: Start service
       command: pm2 start npm -- start ./src/index.html --name "{DOCKER_TAG}-Service"
