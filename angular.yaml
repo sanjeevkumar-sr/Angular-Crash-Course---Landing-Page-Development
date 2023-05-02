@@ -87,6 +87,6 @@
       register: pm2_status
       
     - name: Start service
-      command: pm2 start npm -- start ./src/index.html --name "{DOCKER_TAG}-Service"
+      command: pm2 start  ./src/index.html --name "{DOCKER_TAG}-Service"
       args:
         chdir: "{{ dest_path }}"
