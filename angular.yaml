@@ -71,7 +71,7 @@
         path: "{{ dest_path }}"
       
     - name: Build the application
-      command: ng build --configuration production
+      command: ng build 
       args:
         chdir: "{{ dest_path }}"
         
