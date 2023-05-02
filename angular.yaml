@@ -47,7 +47,7 @@
         dest: "{{dest_path}}"
     
     - name: Add the Node.js repository
-      shell: 'curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash '
+      shell: 'curl --silent --location https://rpm.nodesource.com/setup_16.x | bash -'
       
     - name: Install Node.js and npm
       yum:
