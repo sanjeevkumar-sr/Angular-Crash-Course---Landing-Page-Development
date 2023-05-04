@@ -83,6 +83,7 @@
       register: pm2_status
       
     - name: Start service
-      command: pm2 start npm -- start  ./src/index.html --name angular-crash-course
-      args:
+      command: pm2 start npm --name "angular-crash-course" -- start 
+      args: 
         chdir: "{{ dest_path }}"
+      state: started
