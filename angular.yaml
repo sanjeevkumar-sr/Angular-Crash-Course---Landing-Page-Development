@@ -83,7 +83,7 @@
       register: pm2_status
       
     - name: Start service
-      command: pm2 start /package.json -- name angular-crash-course 
+      command: pm2 start npm --name "angular-crash-course" --start
      
         
 
