@@ -86,4 +86,4 @@
       command: pm2 start npm --name "angular-crash-course" -- start 
       args: 
         chdir: "{{ dest_path }}"
-      state: started
+
