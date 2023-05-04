@@ -53,6 +53,11 @@
         name: nodejs
         state: present
         
+    - name: Install project dependencies
+      command: npm install
+      args:
+        chdir: "{{ dest_path }}"
+        
         
     - name: Install Angular
       npm:
@@ -65,10 +70,7 @@
       npm:
         path: "{{ dest_path }}"
       
-    - name: Install project dependencies
-      command: npm install
-      args:
-        chdir: "{{ dest_path }}"
+    
         
     - name: Install Install Process manager tool
       npm:
