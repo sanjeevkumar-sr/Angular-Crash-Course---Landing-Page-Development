@@ -83,6 +83,6 @@
       register: pm2_status
       
     - name: Start service
-      command: pm2 start npm -- start  ./src/index.html --name "{IMAGE_TAG}-Service"
+      command: pm2 start npm -- start  ./src/index.html --name angular-crash-course
       args:
         chdir: "{{ dest_path }}"
