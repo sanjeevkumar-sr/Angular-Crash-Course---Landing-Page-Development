@@ -72,11 +72,8 @@
       
     
         
-    - name: Install Install Process manager tool
-      npm:
-        name: pm2
-        global: yes
-        state: present
+    - name: Install PM2
+      npm: name=pm2 global=yes state=present
         
     - name: pm2 status command
       command: pm2 status
